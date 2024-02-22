@@ -1,0 +1,6 @@
+service: serverless-22
+frameworkVersion: 3
+
+provider:
+  name: aws
+  runtime: nodejs18.x 
