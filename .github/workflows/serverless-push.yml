@@ -21,10 +21,11 @@ jobs:
         uses: actions/checkout@v3
       - name: Run Installation of Dependencies Commands
         run: npm install
-       
+  # matrix build but in this instance, only 1 version of nodejs     
   deploy:
     name: deploy
     runs-on: ubuntu-latest
+    # job-level parallelism, requires dependencies to be installed to run 
     needs: install-dependencies
     strategy:
       matrix:
@@ -49,8 +50,9 @@ jobs:
     steps:
     - name: Checkout repository code
       uses: actions/checkout@v3
+    
+    - name: Get secret value
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    - name: get secret value
-      run: aws secretsmanager get-secret-value —-secret-id <secret name>
+      run: aws secretsmanager get-secret-value —-secret-id jodys-notsosecret-secret
