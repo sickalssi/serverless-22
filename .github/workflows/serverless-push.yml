@@ -18,7 +18,7 @@ jobs:
     needs: pre-deploy
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
       - name: Run Installation of Dependencies Commands
         run: npm install
        
@@ -30,14 +30,14 @@ jobs:
       matrix:
         node-version: [20.x]
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - name: serverless deploy
-      uses: serverless/github-action@v4.2
+      uses: serverless/github-action@v3.2
       with:
         args: deploy
       env:
@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
