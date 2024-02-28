@@ -45,16 +45,12 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
   retrieve-secrets:
-    name: deploy
     runs-on: ubuntu-latest
-    
     steps:
     - name: Checkout repository code
       uses: actions/checkout@v4
-      
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
     - name: get secret value
       run: aws secretsmanager get-secret-value —-secret-id <secret name>
